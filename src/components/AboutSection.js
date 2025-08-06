@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Sparkles, CodeIcon } from 'lucide-react';
 import resumePDF from '../assets/Parth_resume.pdf'; // Adjust the path as necessary
-import avatar from '../assets/avatar.avif';
+import avatar from '../assets/parthgosavi.png';
 
 
 const containerVariants = {
@@ -120,7 +120,7 @@ const AboutSection = () => {
                       {!imageError && (
                         <img 
                           src={avatar}
-                          alt="Parth Ghadge - Software Development Engineer"
+                          alt="Parth Gosavi - Software Development Engineer"
                           className={`w-full h-full object-cover absolute inset-0 transition-opacity duration-300 ${
                             imageLoaded ? 'opacity-100' : 'opacity-0'
                           }`}

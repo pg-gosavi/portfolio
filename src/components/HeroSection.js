@@ -18,7 +18,7 @@ const HeroSection = () => {
     if (aboutSection) {
       // Responsive offset calculation
       const isMobile = window.innerWidth < 768; // md breakpoint in Tailwind
-      const yOffset = isMobile ? -86 : -110; // -8 for mobile, -110 for desktop
+      const yOffset = isMobile ? -75 : -110; // -8 for mobile, -110 for desktop
       
       const element = aboutSection;
       const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
