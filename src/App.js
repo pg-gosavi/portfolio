@@ -12,8 +12,7 @@ import ContactSection from './components/ContactSection';
 import FooterSection from './components/FooterSection';
 import './App.css';
 import { SpeedInsights } from "@vercel/speed-insights/react"
-
-npm
+import '@vercel/speed-insights/styles.css';
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(true);
 
@@ -47,9 +46,11 @@ function App() {
         transition={{ duration: 0.5 }}
         className="relative"
       >
+        <SpeedInsights/>
+        
         <Navbar isDarkMode={isDarkMode} toggleTheme={toggleTheme} />
 
-        <SpeedInsights/>
+        
         
         <section id="hero">
           <HeroSection />
