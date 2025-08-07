@@ -84,13 +84,7 @@ const ContactSection = () => {
           <motion.div variants={itemVariants}>
             <div className="bg-gray-50 dark:bg-[#1a1a1a] rounded-2xl p-6 md:p-8 h-fit border border-gray-200 dark:border-gray-800">
               
-              {/* Availability Tag */}
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-sm bg-green-500/10 text-green-600 dark:text-green-400 px-3 py-1 rounded-full border border-green-500/20">
-                  Available for work
-                </span>
-              </div>
+        
 
               {/* Profile Image */}
               <div className="flex justify-center mb-6">
@@ -107,9 +101,20 @@ const ContactSection = () => {
                 </div>
               </div>
 
+
+              {/* Availability Tag */}
+              <div className= "flex justify-center">
+              <div className="flex items-center gap-2 mb-6">
+                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                <span className="text-sm bg-green-500/10 text-green-600 dark:text-green-400 px-3 py-1 rounded-full border border-green-500/20">
+                  Available for work
+                </span>
+              </div>
+              </div>
+
               {/* Message Text */}
-              <p className="text-gray-700 dark:text-gray-300 text-sm md:text-base leading-relaxed text-left mb-8">
-                My inbox is always open. Whether you have a project or just want to say Hi. I would love to hear from you. Feel free to contact me and I'll get back to you.
+              <p className="text-gray-700 dark:text-gray-300 text-sm md:text-base leading-relaxed text-center mb-8">
+                I’m actively open to new job opportunities and collaborations. Whether you have a role in mind or just want to connect, feel free to reach out. My inbox is always open, and I’ll get back to you as soon as possible.
               </p>
 
               {/* Social Icons */}
