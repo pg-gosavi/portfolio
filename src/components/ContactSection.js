@@ -40,10 +40,10 @@ const ContactSection = () => {
   };
 
   const socialLinks = [
-    { name: 'LINKEDIN', url: 'https://www.linkedin.com/in/parth-gosavi', label: 'LinkedIn Profile' },
-    { name: 'GITHUB', url: 'https://github.com/pg-gosavi', label: 'GitHub Profile' },
-    { name: 'INSTAGRAM', url: 'https://www.instagram.com/parthgosavi_11?igsh=MXMxODZwcnA4anNqbA==', label: 'Instagram Profile' },
-    { name: 'GMAIL', url: 'mailto:parth93.751@gmail.com', label: 'Email Contact' }
+    { name: 'LinkedIn', icon: <Linkedin className="w-5 h-5" />, url: 'https://www.linkedin.com/in/parth-gosavi' },
+    { name: 'GitHub', icon: <Github className="w-5 h-5" />, url: 'https://github.com/pg-gosavi' },
+    { name: 'Instagram', icon: <Instagram className="w-5 h-5" />, url: 'https://www.instagram.com/parthgosavi_11?igsh=MXMxODZwcnA4anNqbA==' },
+    { name: 'Email', icon: <Mail className="w-5 h-5" />, url: 'mailto:parth93.751@gmail.com' },
   ];
 
   return (
