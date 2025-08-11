@@ -1,7 +1,8 @@
 // src/components/ContactSection.js
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Star, Send, Linkedin, Github, Instagram, Mail, Twitter } from 'lucide-react';
+import emailjs from '@emailjs/browser';
 
 /* ----------------------------------------
    Animations
@@ -25,6 +26,18 @@ const ContactSection = () => {
     email: '',
     message: ''
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Initialize EmailJS
+  useEffect(() => {
+    const publicKey = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
+    if (publicKey) {
+      emailjs.init(publicKey);
+    } else {
+      console.error('EmailJS Public Key not found in environment variables');
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -33,10 +46,44 @@ const ContactSection = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Form submitted:', formData);
+    setIsSubmitting(true);
+    
+    const serviceId = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+    const templateId = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+    
+    // Check if environment variables are loaded
+    if (!serviceId || !templateId) {
+      alert('Email service configuration is missing. Please check environment variables.');
+      setIsSubmitting(false);
+      return;
+    }
+    
+    try {
+      const response = await emailjs.send(serviceId, templateId, {
+        from_name: formData.fullName,
+        from_email: formData.email,
+        message: formData.message,
+        to_email: 'parth93.751@gmail.com'
+      });
+      
+      console.log('Email sent successfully!', response);
+      alert('Message sent successfully! I\'ll get back to you soon.');
+      
+      // Reset form
+      setFormData({
+        fullName: '',
+        email: '',
+        message: ''
+      });
+      
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      alert('Failed to send message. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const socialLinks = [
@@ -84,8 +131,6 @@ const ContactSection = () => {
           <motion.div variants={itemVariants}>
             <div className="bg-gray-50 dark:bg-[#1a1a1a] rounded-2xl p-6 md:p-8 h-fit border border-gray-200 dark:border-gray-800">
               
-        
-
               {/* Profile Image */}
               <div className="flex justify-center mb-6">
                 <div className="relative">
@@ -101,20 +146,19 @@ const ContactSection = () => {
                 </div>
               </div>
 
-
               {/* Availability Tag */}
-              <div className= "flex justify-center">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-2 h-2 bg-green-500 rounded-full"></div>
-                <span className="text-sm bg-green-500/10 text-green-600 dark:text-green-400 px-3 py-1 rounded-full border border-green-500/20">
-                  Available for work
-                </span>
-              </div>
+              <div className="flex justify-center">
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-sm bg-green-500/10 text-green-600 dark:text-green-400 px-3 py-1 rounded-full border border-green-500/20">
+                    Available for work
+                  </span>
+                </div>
               </div>
 
               {/* Message Text */}
               <p className="text-gray-700 dark:text-gray-300 text-sm md:text-base leading-relaxed text-center mb-8">
-                I’m actively open to new job opportunities and collaborations. Whether you have a role in mind or just want to connect, feel free to reach out. My inbox is always open, and I’ll get back to you as soon as possible.
+                I'm actively open to new job opportunities and collaborations. Whether you have a role in mind or just want to connect, feel free to reach out. My inbox is always open, and I'll get back to you as soon as possible.
               </p>
 
               {/* Social Icons */}
@@ -154,7 +198,8 @@ const ContactSection = () => {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-black text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-300"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-black text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="Enter your full name"
                   />
                 </div>
@@ -171,7 +216,8 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-black text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-300"
+                    disabled={isSubmitting}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-black text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="Enter your email address"
                   />
                 </div>
@@ -187,7 +233,8 @@ const ContactSection = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     required
-                    className="flex-1 w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-black text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-300 resize-none min-h-[120px]"
+                    disabled={isSubmitting}
+                    className="flex-1 w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-black text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors duration-300 resize-none min-h-[120px] disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder="Tell me about your project..."
                   />
                 </div>
@@ -197,12 +244,13 @@ const ContactSection = () => {
               <div className="mt-6">
                 <motion.button
                   type="submit"
-                  className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-full font-medium hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 hover:shadow-lg hover:shadow-gray-900/20 dark:hover:shadow-white/20"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  disabled={isSubmitting}
+                  className="w-full md:w-auto inline-flex items-center justify-center gap-2 px-8 py-3 border-2 border-gray-900 dark:border-white text-gray-900 dark:text-white rounded-full font-medium hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all duration-300 hover:shadow-lg hover:shadow-gray-900/20 dark:hover:shadow-white/20 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+                  whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
                 >
                   <Send className="w-4 h-4" />
-                  Send Message
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
                 </motion.button>
               </div>
             </form>
