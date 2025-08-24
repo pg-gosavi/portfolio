@@ -14,7 +14,7 @@ const achievementsData = {
       title: "TechHorizon Hackathon Finalist",
       issuer: "TechHorizon 2025",
       date: "2025",
-      summary: "Top 5 finalist among 300+ teams for building AidConnect with LLMs.",
+      summary: "Finalist among 300+ teams for building AidConnect with LLMs.",
       icon: <Medal className="w-6 h-6" />,
       emoji: "🥇"
     },
@@ -37,33 +37,35 @@ const achievementsData = {
       emoji: "🏆"
     }
   ],
-  certifications: [
+  certifications: [ 
     {
+          
       id: 1,
-      title: "Certified Python Developer",
-      issuer: "HackerRank",
-      date: "2023",
-      summary: "Completed Python skills certification with advanced problem-solving.",
-      icon: <CheckCircle className="w-6 h-6" />,
-      emoji: "✅",
-      certificateUrl: "https://hackerrank.com/certificates/python-certificate-1" // Add your actual certificate URL
-    },
-    {
-      id: 2,
-      title: "Machine Learning Specialization",
-      issuer: "Coursera (Andrew Ng)",
-      date: "2024",
-      summary: "Completed a comprehensive course on supervised/unsupervised learning.",
+      title: "RAG-based Solution using Azure Ai",
+      issuer: "Microsoft",
+      date: "2025",
+      summary: "Created a generative AI app that uses own data.",
       icon: <FileText className="w-6 h-6" />,
       emoji: "📜",
       certificateUrl: "https://coursera.org/certificates/ml-specialization-cert" // Add your actual certificate URL
     },
     {
+      id: 2,
+      title: "Generative Ai Specialization",
+      issuer: "Infosys",
+      date: "2024",
+      summary: "Completed Python skills certification with advanced problem-solving.",
+      icon: <CheckCircle className="w-6 h-6" />,
+      emoji: "✅",
+      certificateUrl: "https://hackerrank.com/certificates/python-certificate-1" // Add your actual certificate URL
+    },
+  
+{
       id: 3,
-      title: "Frontend Web Development",
-      issuer: "freeCodeCamp",
+      title: "Certified Python Developer",
+      issuer: "Hackerrank",
       date: "2023",
-      summary: "Built responsive UIs with React and modern JS.",
+      summary: "Completed Python skills certification with advanced problem-solving..",
       icon: <Bookmark className="w-6 h-6" />,
       emoji: "📘",
       certificateUrl: "https://freecodecamp.org/certificates/frontend-cert" // Add your actual certificate URL

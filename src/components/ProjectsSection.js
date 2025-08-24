@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Star, ExternalLink, Github, ArrowUpRight } from 'lucide-react';
-import GiveForward from '../assets/GiveForward.png';
-import Healix from '../assets/Healix.png';
+import AidConnect from '../assets/AidConnect.png';
+import MediBuddy from '../assets/Medibuddy.png';
 import MentorHub from '../assets/MentorsHub.png';
 //import InSight from '../assets/InSight.png';
 import AppleAnalyzer from '../assets/AppleAnalyzer.png';
@@ -19,7 +19,7 @@ const projectsData = [
     year: "2025",
     status: "Multimodal Healthcare Assistant",
     description: "A voice and vision-based AI assistant for healthcare diagnosis. Integrated speech and image processing models achieving ~95% accuracy.",
-    image: Healix,
+    image: MediBuddy,
     backgroundColor: "bg-purple-50 dark:bg-purple-900/20",
     accentColor: "text-purple-700 dark:text-purple-400",
     technologies: ["Python", "Gradio", "OpenAI", "Groq Api"],
@@ -34,7 +34,7 @@ const projectsData = [
     year: "2025",
     status: "Hackathon Finalist",
     description: "Donation platform for direct goods delivery from shopkeepers to NGOs. Features an AI-based vendor matching algorithm using LLaMA 3.2.",
-    image: GiveForward,
+    image: AidConnect,
     backgroundColor: "bg-purple-50 dark:bg-purple-900/20",
     accentColor: "text-purple-700 dark:text-purple-400",
     technologies: ["React", "Node.js", "LLaMA 3.2", "MongoDB"],
